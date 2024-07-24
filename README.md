@@ -37,3 +37,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+## Attachments
+Attached is a presentation and a documentation of the project. But only in german!
+[Städtegenerator Dokumentation.pdf](https://github.com/user-attachments/files/16367825/Stadtegenerator.Dokumentation.pdf)
+[Städtegenerator Präsentation.pptx](https://github.com/user-attachments/files/16367830/Stadtegenerator.Prasentation.pptx)

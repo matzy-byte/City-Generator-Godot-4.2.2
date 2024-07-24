@@ -1,0 +1,309 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6lao38ocnmx1"]
+
+[ext_resource type="Script" path="res://DistrictGenerator.gd" id="1_knvj0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wvpmp"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+sky_energy_multiplier = 0.9
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_41joa"]
+sky_material = SubResource("ProceduralSkyMaterial_wvpmp")
+
+[sub_resource type="Environment" id="Environment_3xifm"]
+background_mode = 2
+sky = SubResource("Sky_41joa")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="Environment" id="Environment_git5g"]
+
+[node name="main_scene" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3xifm")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 2048.0
+
+[node name="City" type="MeshInstance3D" parent="."]
+script = ExtResource("1_knvj0")
+noise_frequency = 0.1
+noise_amplitude = null
+
+[node name="Cam_1" type="Camera3D" parent="."]
+transform = Transform3D(-0.707107, 0.264887, -0.655618, 0, 0.927184, 0.374606, 0.707107, 0.264887, -0.655618, -160, 220, -150)
+current = true
+fov = 47.7
+
+[node name="Cam_2" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, 0.264887, -0.655618, 0, 0.927184, 0.374606, 0.707107, -0.264887, 0.655618, -160, 220, 1150)
+fov = 47.7
+
+[node name="Cam_3" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.264887, 0.655618, 0, 0.927184, 0.374606, -0.707107, -0.264887, 0.655618, 1160, 220, 1150)
+fov = 47.7
+
+[node name="Cam_4" type="Camera3D" parent="."]
+transform = Transform3D(-0.707107, -0.264887, 0.655618, 0, 0.927184, 0.374606, -0.707107, 0.264887, -0.655618, 1160, 220, -150)
+fov = 47.7
+
+[node name="Cam_5" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 494, 606.671, 1383.48)
+projection = 1
+fov = 47.7
+size = 700.0
+
+[node name="Cam_6" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 500, 1000, 500)
+environment = SubResource("Environment_git5g")
+projection = 1
+fov = 47.7
+size = 1050.0
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 556.0
+offset_bottom = 237.0
+
+[node name="B_City_size" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="L_City_size" type="Label" parent="Control/VBoxContainer/B_City_size"]
+layout_mode = 2
+text = "City size (m):"
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Control/VBoxContainer/B_City_size"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.33
+
+[node name="S_City_size_x" type="HSlider" parent="Control/VBoxContainer/B_City_size"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 300.0
+max_value = 2000.0
+value = 1000.0
+rounded = true
+
+[node name="L_City_size_x" type="Label" parent="Control/VBoxContainer/B_City_size"]
+layout_mode = 2
+text = "X"
+
+[node name="S_City_size_y" type="HSlider" parent="Control/VBoxContainer/B_City_size"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 300.0
+max_value = 2000.0
+value = 1000.0
+rounded = true
+
+[node name="L_City_size_y" type="Label" parent="Control/VBoxContainer/B_City_size"]
+layout_mode = 2
+text = "Y"
+
+[node name="B_Noise_seed" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="L_Noise_seed" type="Label" parent="Control/VBoxContainer/B_Noise_seed"]
+layout_mode = 2
+text = "Noise seed:"
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Control/VBoxContainer/B_Noise_seed"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.17
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/B_Noise_seed"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "..."
+clear_button_enabled = true
+
+[node name="B_Highway_layout" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="L_Highway_layout" type="Label" parent="Control/VBoxContainer/B_Highway_layout"]
+layout_mode = 2
+text = "Highway layout:"
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Control/VBoxContainer/B_Highway_layout"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+
+[node name="S_Highway_layout_x" type="HSlider" parent="Control/VBoxContainer/B_Highway_layout"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 2.0
+max_value = 10.0
+value = 5.0
+rounded = true
+
+[node name="L_Highway_layout_x" type="Label" parent="Control/VBoxContainer/B_Highway_layout"]
+layout_mode = 2
+text = "Amount X"
+
+[node name="S_Highway_layout_y" type="HSlider" parent="Control/VBoxContainer/B_Highway_layout"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 2.0
+max_value = 10.0
+value = 5.0
+rounded = true
+
+[node name="L_Highway_layout_y" type="Label" parent="Control/VBoxContainer/B_Highway_layout"]
+layout_mode = 2
+text = "Amount Y"
+
+[node name="B_Highway_size" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="L_Highway_size" type="Label" parent="Control/VBoxContainer/B_Highway_size"]
+layout_mode = 2
+text = "Highway size:"
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Control/VBoxContainer/B_Highway_size"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.17
+
+[node name="S_Highway_size" type="HSlider" parent="Control/VBoxContainer/B_Highway_size"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 12.0
+max_value = 47.0
+value = 12.0
+tick_count = 6
+ticks_on_borders = true
+
+[node name="L_Highway_size_s" type="Label" parent="Control/VBoxContainer/B_Highway_size"]
+layout_mode = 2
+text = "Road width"
+
+[node name="B_Street_size" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="L_Street_size" type="Label" parent="Control/VBoxContainer/B_Street_size"]
+layout_mode = 2
+text = "Street size:"
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Control/VBoxContainer/B_Street_size"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.22
+
+[node name="S_Street_size" type="HSlider" parent="Control/VBoxContainer/B_Street_size"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 12.0
+max_value = 19.0
+value = 12.0
+tick_count = 3
+ticks_on_borders = true
+
+[node name="L_Street_size_s" type="Label" parent="Control/VBoxContainer/B_Street_size"]
+layout_mode = 2
+text = "Road width"
+
+[node name="B_Grid" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="L_Grid" type="Label" parent="Control/VBoxContainer/B_Grid"]
+layout_mode = 2
+text = "Render city in grid:"
+
+[node name="C_Grid" type="CheckBox" parent="Control/VBoxContainer/B_Grid"]
+layout_mode = 2
+
+[node name="Cam_Buttons" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Cam_1" type="Button" parent="Control/VBoxContainer/Cam_Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cam 1"
+
+[node name="Cam_2" type="Button" parent="Control/VBoxContainer/Cam_Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cam 2"
+
+[node name="Cam_3" type="Button" parent="Control/VBoxContainer/Cam_Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cam 3"
+
+[node name="Cam_4" type="Button" parent="Control/VBoxContainer/Cam_Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cam 4"
+
+[node name="Cam_5" type="Button" parent="Control/VBoxContainer/Cam_Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cam 5"
+
+[node name="Cam_6" type="Button" parent="Control/VBoxContainer/Cam_Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cam 6"
+
+[node name="Button" type="Button" parent="Control/VBoxContainer"]
+layout_direction = 1
+layout_mode = 2
+size_flags_stretch_ratio = 2.01
+text = "Generate"
+icon_alignment = 1
+
+[node name="City_Label" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -324.0
+offset_top = 9.0
+offset_right = -127.0
+offset_bottom = 40.0
+grow_horizontal = 0
+scale = Vector2(1.615, 1.615)
+text = "Godot city generator v1.0"
+
+[node name="Name_Label" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -111.0
+offset_top = 49.0
+offset_right = 2.0
+offset_bottom = 80.0
+grow_horizontal = 0
+scale = Vector2(0.9, 0.9)
+text = "Bastian Weiler"
+
+[connection signal="value_changed" from="Control/VBoxContainer/B_City_size/S_City_size_x" to="City" method="_on_s_city_size_x_value_changed"]
+[connection signal="value_changed" from="Control/VBoxContainer/B_City_size/S_City_size_y" to="City" method="_on_s_city_size_y_value_changed"]
+[connection signal="text_changed" from="Control/VBoxContainer/B_Noise_seed/LineEdit" to="City" method="_on_line_edit_text_changed"]
+[connection signal="value_changed" from="Control/VBoxContainer/B_Highway_layout/S_Highway_layout_x" to="City" method="_on_s_highway_layout_x_value_changed"]
+[connection signal="value_changed" from="Control/VBoxContainer/B_Highway_layout/S_Highway_layout_y" to="City" method="_on_s_highway_layout_y_value_changed"]
+[connection signal="value_changed" from="Control/VBoxContainer/B_Highway_size/S_Highway_size" to="City" method="_on_s_highway_size_value_changed"]
+[connection signal="value_changed" from="Control/VBoxContainer/B_Street_size/S_Street_size" to="City" method="_on_s_street_size_value_changed"]
+[connection signal="toggled" from="Control/VBoxContainer/B_Grid/C_Grid" to="City" method="_on_c_grid_toggled"]
+[connection signal="pressed" from="Control/VBoxContainer/Cam_Buttons/Cam_1" to="City" method="_on_cam_1_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Cam_Buttons/Cam_2" to="City" method="_on_cam_2_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Cam_Buttons/Cam_3" to="City" method="_on_cam_3_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Cam_Buttons/Cam_4" to="City" method="_on_cam_4_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Cam_Buttons/Cam_5" to="City" method="_on_cam_5_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Cam_Buttons/Cam_6" to="City" method="_on_cam_6_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Button" to="City" method="_on_button_pressed"]

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://df74xa6s42x5f"]
+
+[ext_resource type="Script" path="res://BlockGenerator.gd" id="1_07ar8"]
+
+[node name="Block" type="MeshInstance3D"]
+script = ExtResource("1_07ar8")
+_size = Vector2(400, 350)

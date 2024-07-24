@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4h0wkvy2jt6u"]
+
+[ext_resource type="Script" path="res://Knot.gd" id="1_o1gp8"]
+
+[node name="Knot" type="Node"]
+script = ExtResource("1_o1gp8")
+_size = Vector2(12, 12)

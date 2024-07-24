@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bi7evl0vh5p30"]
+
+[ext_resource type="Shader" path="res://Materials/S_Building.gdshader" id="1_6mf5a"]
+[ext_resource type="Texture2D" uid="uid://qno85hy0sxmw" path="res://Textures/facade_3.png" id="2_upsr0"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_6mf5a")
+shader_parameter/texture_wall = ExtResource("2_upsr0")
